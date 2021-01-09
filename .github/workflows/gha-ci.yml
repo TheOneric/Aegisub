@@ -31,7 +31,7 @@ jobs:
       - name: install deps
         run: |
           if (echo "${{ matrix.os }}" | grep -qE '^macos-') ; then
-            #brew update
+            brew update
             # freetype, gettext, icuc4 and autoconf are preinstalled
             # and `brew install` fails if a non-uptodate version is already installed
             #brew upgrade autoconf freetype gettext icu4c
@@ -41,7 +41,7 @@ jobs:
             git submodule --quiet init
             git submodule --quiet update vendor/googletest
           else
-            #sudo apt-get update && sudo apt-get upgrade -y
+            sudo apt-get update #&& sudo apt-get upgrade -y
             sudo apt-get install -y ${{ matrix.build_suite }} \
               autopoint build-essential g++ gcc gettext libasound2-dev \
               libass-dev  libffms2-dev libfftw3-dev libfontconfig1-dev   \
